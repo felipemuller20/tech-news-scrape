@@ -136,7 +136,7 @@ As notícias podem ser obtidas através da raspagem das [últimas notícias do _
 ## Data de Entrega
 
 - Serão `X` dias de projeto.
-- Data de entrega para avaliação final do projeto: `DD/MM/YYYY - 14:00h`.
+- Data de entrega para avaliação final do projeto: `19/01/2022 - 14:00h`.
 
 ---
 # Instruções para entregar seu projeto:
