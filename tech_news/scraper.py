@@ -1,10 +1,10 @@
 import requests
 import time
+from parsel import Selector
 
 
 # Requisito 1
 def fetch(url):
-    """Seu código deve vir aqui"""
     time.sleep(1)
     try:
         response = requests.get(url, timeout=3)
@@ -18,7 +18,12 @@ def fetch(url):
 
 # Requisito 2
 def scrape_novidades(html_content):
-    """Seu código deve vir aqui"""
+    selector = Selector(html_content)
+    news_list = []
+    for news in selector.css("h3.tec--card__title a::attr(href)").getall():
+        news_list.append(news)
+
+    return news_list
 
 
 # Requisito 3
