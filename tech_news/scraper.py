@@ -120,16 +120,20 @@ def scrape_noticia(html_content):
 # Requisito 5
 def get_tech_news(amount):
     url = "https://www.tecmundo.com.br/novidades"
-    news_result = []
-    pages = int(amount / 20) + (amount % 20 > 0) # pega o número de páginas necessárias
-    for page in range(1, pages + 1):
-        content = fetch(url)
-        news = scrape_novidades(content)
-        for urls in news:
-            while len(news_result) < amount:
-                new_content = fetch(urls)
-                news_result.append(scrape_noticia(new_content))
-        url = scrape_next_page_link(content)
+    content = fetch(url)
+    news_urls = scrape_novidades(content)
+    news = []
 
-    create_news(news_result)
-    return news_result
+    while len(news_urls) < amount:
+        url = scrape_next_page_link(content)
+        content = fetch(url)
+        news_urls.extend(content)
+
+    for new_url in news_urls:
+        while len(news) <= amount:
+            new_content = fetch(new_url)
+            scraped = scrape_noticia(new_content)
+            news.append(scraped)
+
+    create_news(news)
+    return news
