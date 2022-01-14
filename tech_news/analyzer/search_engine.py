@@ -8,7 +8,7 @@ def search_by_title(title):
     for new in news:
         tupla = (new["title"], new["url"])
         result.append(tupla)
-    return result    
+    return result
 
 
 # Requisito 7
