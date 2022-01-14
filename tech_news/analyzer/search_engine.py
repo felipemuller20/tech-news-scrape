@@ -1,6 +1,7 @@
 from tech_news.database import search_news
 import time
 
+
 # Requisito 6
 def search_by_title(title):
     news = search_news({"title": {"$regex": title, "$options": "i"}})
@@ -18,7 +19,7 @@ def search_by_date(date):
         time.strptime(date, "%Y-%m-%d")
     except ValueError:
         raise ValueError("Data inválida")
-    
+
     news = search_news({"timestamp": {"$regex": date}})
     result = []
     for new in news:
