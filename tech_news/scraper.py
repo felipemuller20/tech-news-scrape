@@ -3,6 +3,7 @@ import time
 from parsel import Selector
 from tech_news.database import create_news
 
+
 # Requisito 1
 def fetch(url):
     time.sleep(1)
@@ -127,10 +128,11 @@ def get_tech_news(amount):
     while len(news_urls) < amount:
         url = scrape_next_page_link(content)
         content = fetch(url)
-        news_urls.extend(content)
+        add_url = scrape_novidades(content)
+        news_urls.extend(add_url)
 
     for new_url in news_urls:
-        while len(news) <= amount:
+        if len(news) < amount:
             new_content = fetch(new_url)
             scraped = scrape_noticia(new_content)
             news.append(scraped)
