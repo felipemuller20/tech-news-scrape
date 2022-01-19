@@ -1,4 +1,0 @@
-ignore_files:
-  - tech_news/database.py
-  - tests/
-  - setup.cfg
